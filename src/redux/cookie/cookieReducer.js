@@ -1,7 +1,7 @@
-import { BUY_COOKIE } from './cookieTypes';
+import { BUY_COOKIE, SELL_COOKIE } from './cookieTypes';
 
 const initialState = {
-  numOfCookies: 30,
+  numOfCookies: 75,
 };
 
 const cookieReducer = (state = initialState, action) => {
@@ -9,7 +9,12 @@ const cookieReducer = (state = initialState, action) => {
     case BUY_COOKIE:
       return {
         ...state,
-        numOfCookies: state.numOfCookies - 1,
+        numOfCookies: state.numOfCookies - action.payload,
+      };
+    case SELL_COOKIE:
+      return {
+        ...state,
+        numOfCookies: state.numOfCookies + +action.payload,
       };
 
     default:
